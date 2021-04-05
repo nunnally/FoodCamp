@@ -1,8 +1,10 @@
 body {
     font-family: 'Roboto', sans-serif;
+    background-color: #E5E5E5;
 }
 
 header{
+    
     background:#CF2B2B;
     height: 90px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -15,10 +17,90 @@ header .logo {
 header .title {
     color:#fff;
     font-size: 45px;
-    font-family: 'Righteous', cursive;
+    font-family: 'Righteous', normal;
 }
 header .subtitle {
     color:#fff;
     font-size: 18px;
     font-family: 'Roboto', sans-serif;
+}
+
+main {
+    padding: 35px 0 0 20px;
+}
+section h2 {
+    font-family: 'Righteous', normal;
+    font-size: 26px;
+}
+
+section {
+    margin-bottom: 25px !important;
+}
+section:last-of-type{
+    padding-bottom: 110px;
+}
+
+.itens{
+    margin-top: 17px;
+    width: 100%;
+    display: flex;
+    overflow: scroll;
+    -ms-overflow-style: none;  
+    scrollbar-width: none;  /* Firefox */
+}
+.itens::-webkit-scrollbar {
+    display: none;
+}
+.itens li{
+    width: 172px;
+    background-color: #fff;
+    border-radius: 9px;
+    box-shadow: 0px 0px 10px -4px rgba(0, 0, 0, 0.25);
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    margin-right: 16px;
+    padding: 18px 14px 13px 14px;
+    line-height: 19px;
+    position: relative;
+    font-weight: 300;
+    color: #a6a6a6;
+}
+.itens li strong{
+
+    color: black;
+}
+.itens li img{
+    border-radius: 4px;
+    width: 144px;
+    height: 87px;
+    margin-bottom: 8px;
+}
+
+
+
+footer {
+    height: 92px;
+    width: 100%;
+    position: fixed;
+    background-color: #ffffff;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+footer button {
+    width: calc(100% - 50px);
+    height: 60px;
+    border-radius: 50px;
+    border: hidden;
+    background-color: #cbcbcb;
+    color: white;
+    font-size: 20px;
+}
+
+footer .ready {
+    font-weight: bold;
+    background-color:#32B72F;
 }
