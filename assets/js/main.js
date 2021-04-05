@@ -144,6 +144,11 @@ function loadcheckoutWall() {
 
     checkoutScreen.classList.add("show")
 }
+
+function cancellWall() {
+
+    document.querySelector("#checkout-screen").classList.remove("show")
+}
 function checkOut(){
     dataCheckout.name=prompt("Olá! Informa o seu nome.");
     dataCheckout.cep=prompt("Estamos quase lá! Agora informe seu endereço.");
