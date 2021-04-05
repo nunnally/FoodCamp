@@ -1,22 +1,22 @@
 menu = {
     "main":[{
-        "name":"Ciabatta de Frango com Blue Cheese",
-        "description":"pão italiano tostado na manteiga • frango grelhado • molho blue cheese • picles de cebola roxa",
+        "name":"Ciabatta de Frango",
+        "description":"pão italiano na manteiga frango grelhado ",
         "value":"42,00 "
     },
     {
-        "name":"Korean Ribs com house fries",
-        "description":"Costelinha glaceada em molho agridoce oriental e gergelim tostado • house fries",
+        "name":"Korean Ribs",
+        "description":"Costelinha glaceada em molho agridoce oriental • house fries",
         "value":"49,00 "
     },
     {
         "name":"Filé mignon aligot",
-        "description":"Filé grelhado (200g) • demi de carne • aligot • legumes • farofa de pão",
+        "description":"Filé grelhado (200g) • demi de carne • aligot • legumes ",
         "value":"67,00 "
     },
     {
         "name":"Lemon cogu pasta",
-        "description":"Fettuccine • molho de vinho branco e limão siciliano • cogumelos • salsinha • queijo derretido",
+        "description":"Fettuccine • molho de vinho e limão siciliano • cogumelos",
         "value":"53,00 "
     },
 ],
@@ -27,18 +27,18 @@ menu = {
     },
     {
         "name":"FIZZ GIN TONIC",
-        "description":"london dry gin • licor de flor de sabugueiro• vermute seco • limão • pepino • água Tônica",
+        "description":"london dry gin • licor de flor de sabugueiro• vermute seco",
         "value":"42,00 "
     },
     {
         "name":"Limonada suíça",
-        "description":"Limonadinea suíça feita na hora, bem freshhhh",
+        "description":"Limonadinha suíça feita na hora, com manjericão, bem freshhhh",
         "value":"9,00 "
     }
 ],
     "desserts":[{
         "name":"Torta de chocolate",
-        "description":"Torta de chocolate • caramelo salgado • chantilly com limão",
+        "description":"Torta de chocolate • caramelo salgado ",
         "value":"30,00 "
     },
     {
@@ -48,10 +48,12 @@ menu = {
     },
 ]
 }
+
+//AHHHHHHHHHHH 0 == FALSE meu deus
 selecteds = {
-    "main":false,
-    "drinks":false,
-    "desserts":false
+    "main":-1,
+    "drinks":-1,
+    "desserts":-1
 }
 
 
@@ -62,11 +64,12 @@ function createItems(){
             console.log(item.name)
             item_li = document.createElement('li');
             item_li.setAttribute("id",category+"-"+index)
+            item_li.setAttribute("onclick","selectItem("+index+",'"+category+"')")
             item_img = document.createElement('img');
             item_img.src="/media/"+category+"/"+index+".webp"
             item_li.appendChild(item_img);
             item_info = document.createElement("p");
-            item_info.innerHTML ="<strong>"+item['name']+"</strong><br>"+item['description']
+            item_info.innerHTML ="<strong>"+item['name']+"</strong><br>"+item['description']+"<p>R$"+item['value']+"</p>"
             item_li.appendChild(item_info);
             document.querySelector("#"+category).appendChild(item_li)
         }
@@ -78,18 +81,40 @@ function selectItem(id,category){
 
     selecteds[category]=id
 
-    all_selected = false;
-    for (var category in selecteds) {
-        all_selected = (selecteds[category]!=false)?true:false
-    }
-    
-    return (all_selected==false)? true: allowCheckout();
+    items = document.querySelector("#"+category).getElementsByTagName('li');
 
+    
+    //items.classList.remove("checked");
+    for (const item of items){
+        item.classList.remove("checked");
+    }
+    items[id].classList.add("checked");
+    checkItems()
+    
+
+}
+
+
+function checkItems(){
+
+    all_selected = false;
+    count = 0;
+
+    for (var category in selecteds) {
+        
+        (selecteds[category]==-1)?count:count++;
+    }
+
+
+    return (count<3)? true: allowCheckout();
+    
 }
 
 function allowCheckout(){
 
-    document.querySelector("footer button").classList.add("ready");
+    button = document.querySelector("footer button")
+    button.classList.add("ready");
+    button.innerHTML="Fechar pedido";
 }
 
 
