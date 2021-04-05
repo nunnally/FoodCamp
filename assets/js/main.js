@@ -49,6 +49,12 @@ menu = {
 ]
 }
 
+dataCheckout = {
+    "name":"",
+    "cep":"",
+    "total":0
+}
+
 //AHHHHHHHHHHH 0 == FALSE meu deus
 selecteds = {
     "main":-1,
@@ -114,9 +120,42 @@ function allowCheckout(){
 
     button = document.querySelector("footer button")
     button.classList.add("ready");
+    button.disabled = false;
     button.innerHTML="Fechar pedido";
+
+    //Calcular o valor final do pedido
+    for (var category in selecteds){
+        dataCheckout.total+=parseFloat(menu[category][selecteds[category]].value);
+        
+    }
+    
+}
+
+function loadcheckoutWall() {
+    checkoutScreen = document.querySelector("#checkout-screen")
+    ths = checkoutScreen.getElementsByTagName('td');
+    ths[0].innerHTML=menu['main'][selecteds['main']].name;
+    ths[1].innerHTML=menu['main'][selecteds['main']].value;
+    ths[2].innerHTML=menu['drinks'][selecteds['drinks']].name;
+    ths[3].innerHTML=menu['drinks'][selecteds['drinks']].value;
+    ths[4].innerHTML=menu['desserts'][selecteds['desserts']].name;
+    ths[5].innerHTML=menu['desserts'][selecteds['desserts']].value;
+    ths[7].innerHTML="R$"+dataCheckout.total;
+
+    checkoutScreen.classList.add("show")
+}
+function checkOut(){
+    dataCheckout.name=prompt("Olá! Informa o seu nome.");
+    dataCheckout.cep=prompt("Estamos quase lá! Agora informe seu endereço.");
+
+    final_message = ("Olá, gostaria de fazer o pedido:\n - Prato: " + menu['main'][selecteds['main']].name +"\n - Bebida: " + menu['drinks'][selecteds['drinks']].name +"\n - Sobremesa: " + menu['desserts'][selecteds['desserts']].name+ "\n Total: R$" + dataCheckout.total.toFixed(2)+"\n \nNome: "+ dataCheckout.name+"\nEndereço:"+dataCheckout.cep);
+    final_message = encodeURIComponent(final_message);
+    url = `https://wa.me/61991277623/?text=${final_message}`;
+    window.location.href = url;
+
 }
 
 
 //Call createItems after load
 document.addEventListener("DOMContentLoaded", createItems());
+

@@ -11,6 +11,7 @@
 </head>
 <body>
     <header>
+        
         <div class="logo">
             <div class="title">FoodCamp</div>
             <div class="subtitle">Sua comida em 6 minutos</div>
@@ -35,9 +36,38 @@
     </main>
 
     <footer>
-        <button  onclick="checkout()"> Selecione os 3 itens <br>
+        <button disabled onclick="loadcheckoutWall()"> Selecione os 3 itens <br>
         para fechar o pedido</button>
     </footer>
+    <div id="checkout-screen">
+        <div class="checkout-data" style="overflow-x:auto;">
+            <span class="title-checkout"><strong>Confirme seu pedido</strong></span>
+            <table class="tg" style="width: 90%">
+                <thead>
+                  <tr>
+                    <td style="text-align:left">Principal</td>
+                    <td style="text-align:left">vp</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Bebida</td>
+                    <td>vb</td>
+                  </tr>
+                  <tr>
+                    <td>Sobremesa</td>
+                    <td>vs</td>
+                  </tr>
+                  <tr>
+                    <td>total</td>
+                    <td>vt</td>
+                  </tr>
+                </tbody>
+                </table>
+            <button class="confirma" onclick="checkOut()"><a href="#" target="_blank">Tudo certo, pode pedir!</a></button>
+            <button style="background-color:transparent;color:white;" onclick="pedir_ou_cancelar()">Cancelar</button>
+        </div>
+    </div>
 </body>
 <script src="assets/js/main.js"></script>
 </html>
